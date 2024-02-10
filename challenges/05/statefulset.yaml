@@ -1,0 +1,47 @@
+---
+apiVersion: apps/v1
+kind: Statefulset
+metadata:
+  name: mysql
+  labels:
+    app: mysql
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: mysql
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      containers:
+        - name: mysql
+          image: "mysql:8.1.0"
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 3306
+              protocol: TCP
+          env:
+          - name: MYSQL_ROOT_PASSWORD
+            value: pluralsight
+          - name: MYSQL_USER
+            value: psuser
+          - name: MYSQL_PASSWORD
+            value: pluralsight
+          - name: MYSQL_DATABASE
+            value: wordpress
+          livenessProbe:
+            tcpSocket:
+              port: 3306
+          readinessProbe:
+            tcpSocket:
+              port: 3306
+          volumeMounts:
+          - name: mysql-persistent-storage
+            mountPath: /var/lib/mysql
+      volumes:
+       - name: mysql-persistent-storage
+         persistentVolumeClaim:
+           claimName: mysql
+
