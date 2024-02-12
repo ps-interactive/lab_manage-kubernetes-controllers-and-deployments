@@ -9,5 +9,9 @@ spec:
       containers:
       - name: busybox
         image: busybox:1.36
-        command: ["echo", "Hello PluralSight!"]
+        args:
+        - /bin/sh
+        - -c
+        - echo "$(date) - Hello PluralSight!"
       restartPolicy: Never
+
