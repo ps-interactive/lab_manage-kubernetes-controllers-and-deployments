@@ -18,7 +18,7 @@ spec:
       - name: healthcheck
         image: busybox:1.36
         command: ['sh', '-c']
-        args: "while true; do echo '$(date) - HEARTBEAT' >> /var/log/k8s-node-status.txt; sleep 2; done"
+        args: ['while true; do echo "$(date) - HEARTBEAT" >> /var/log/k8s-node-status.txt; sleep 2; done']
         volumeMounts:
         - mountPath: /var/log/k8s-node-status.txt
           name: myfile
