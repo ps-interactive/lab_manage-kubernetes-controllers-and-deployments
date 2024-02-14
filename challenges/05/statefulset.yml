@@ -29,7 +29,7 @@ spec:
           if [[ $ordinal -eq 0 ]]; then
             cp /mnt/master.conf /etc/redis-config.conf
           else
-            cp /mnt/slave.conf /etc/redis-config.conf
+            cp /mnt/replica.conf /etc/redis-config.conf
           fi
         volumeMounts:
         - name: redis-claim

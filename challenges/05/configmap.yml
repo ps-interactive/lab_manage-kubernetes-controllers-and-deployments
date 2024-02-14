@@ -14,8 +14,8 @@ data:
     appendonly no
     dbfilename dump.rdb
     dir /data
-  slave.conf: |
-    slaveof redis-ss-0.redis-service.challenge5 6379
+  replica.conf: |
+    replicaof redis-ss-0.redis-service.challenge5 6379
     maxmemory 400mb
     maxmemory-policy allkeys-lru
     maxclients 20000
